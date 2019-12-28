@@ -11,8 +11,8 @@ public class UserServiceTest {
 	@Test
 	public void userServiceBean ()throws Exception{
 		ApplicationContext applicationContext = SpringApplication.run();
-
 		IUserService userService = (IUserService) applicationContext.getBean("userService");
 		userService.testSay("success");
 	}
+
 }
