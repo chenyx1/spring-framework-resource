@@ -495,13 +495,20 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
 	protected void initStrategies(ApplicationContext context) {
+		//初始化文件上传下载解析器
 		initMultipartResolver(context);
 		initLocaleResolver(context);
+		//初始化Theme解析器
 		initThemeResolver(context);
+		//初始化HandlerMapping，用于找到handle
 		initHandlerMappings(context);
+		//初始化handleAdapter:后续通过handleAdapter.handle（）进行访问controller
 		initHandlerAdapters(context);
+		//初始化异常解析器
 		initHandlerExceptionResolvers(context);
+
 		initRequestToViewNameTranslator(context);
+		//初始化视图解析器
 		initViewResolvers(context);
 		initFlashMapManager(context);
 	}
@@ -961,6 +968,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
+				//获取handle，并将取拦截器封装在handle中
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
@@ -968,6 +976,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Determine handler adapter for the current request.
+				//获取handler设配器
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
@@ -983,11 +992,13 @@ public class DispatcherServlet extends FrameworkServlet {
 					}
 				}
 
+				//拦截器处理preHandle
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
 					return;
 				}
 
 				// Actually invoke the handler.
+				//通过handle设配器进行请求处理并返回结果
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				if (asyncManager.isConcurrentHandlingStarted()) {
@@ -995,6 +1006,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				applyDefaultViewName(processedRequest, mv);
+				//拦截器处理postHandle
 				mappedHandler.applyPostHandle(processedRequest, response, mv);
 			}
 			catch (Exception ex) {

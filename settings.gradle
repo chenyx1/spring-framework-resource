@@ -31,4 +31,6 @@ rootProject.children.each {project ->
 }
 include 'spring-resource-bean-cycle'
 include 'spring-resource-bean-cycle'
+include 'spring-rescurce-mvc'
+include 'spring-resource.mvc-web'
 
