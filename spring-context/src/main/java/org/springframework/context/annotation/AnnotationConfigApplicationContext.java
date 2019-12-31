@@ -87,7 +87,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		this();
 
 		//读取配置文件
-		//将bean信息注入到GatericBeanDefinetion中
+		//将annotatedClasses信息注入到GatericBeanDefinetionMap中
 		register(annotatedClasses);
 		//bean的声明周期创建
 		refresh();

@@ -142,7 +142,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @param annotatedClass the class of the bean
 	 */
 	public void registerBean(Class<?> annotatedClass) {
-		//实现IOC依赖注入
+		//实现annotatedClass注入definitionMap中
 		doRegisterBean(annotatedClass, null, null, null);
 	}
 
@@ -224,6 +224,7 @@ public class AnnotatedBeanDefinitionReader {
 		abd.setScope(scopeMetadata.getScopeName());
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 
+		//注解信息设置，例如lazy注解，则beandefinition 设置对应的属性为true
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
 		if (qualifiers != null) {
 			for (Class<? extends Annotation> qualifier : qualifiers) {
