@@ -1,5 +1,8 @@
 package com.chenyx.spring.beancycle.config;
 
+import com.chenyx.spring.beancycle.service.IOwnerService;
+import com.chenyx.spring.beancycle.service.impl.OwnerServiceImpl;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,4 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.chenyx.spring.beancycle")
 @Configuration
 public class ApsectConfig {
+
+	@Bean
+	public IOwnerService ownerService(){
+		IOwnerService ownerService  = new OwnerServiceImpl();
+		return ownerService;
+	}
 }

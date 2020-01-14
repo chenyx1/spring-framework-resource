@@ -169,6 +169,7 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 		}
 
 		// Let subclasses do whatever initialization they like.
+		//创建servletbean和初始化spring上下文
 		initServletBean();
 
 		if (logger.isDebugEnabled()) {

@@ -150,6 +150,7 @@ public class BeanDefinitionReaderUtils {
 		//spring ioc注入
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
 
+		//bean的别名设置
 		// Register aliases for bean name, if any.
 		String[] aliases = definitionHolder.getAliases();
 		if (aliases != null) {

@@ -499,6 +499,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		long startTime = System.currentTimeMillis();
 
 		try {
+			//初始化spring上下文，同时进行bean的生命周期管理
 			this.webApplicationContext = initWebApplicationContext();
 			initFrameworkServlet();
 		}

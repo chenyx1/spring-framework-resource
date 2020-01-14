@@ -74,6 +74,11 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	}
 
 
+
+	/**
+	 * @desc Aware处理器前置方法，主要用于给Aware相关的bean设置applicationContext相关属性
+	 *@date 2020-01-10
+	 * */
 	@Override
 	@Nullable
 	public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {

@@ -66,6 +66,10 @@ class ApplicationListenerDetector implements DestructionAwareBeanPostProcessor, 
 		return bean;
 	}
 
+	/***
+	 * @desc 将ApplicationListener监听器保存到监听器缓存中
+	 * @date 2020-01-10
+	 * */
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		if (bean instanceof ApplicationListener) {

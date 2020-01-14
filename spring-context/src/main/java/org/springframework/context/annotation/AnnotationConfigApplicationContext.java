@@ -62,7 +62,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
 	 */
 	public AnnotationConfigApplicationContext() {
+		//创建注解阅读器
+		//主要设置环境变量 new StandardEnvironment()
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+		//创建路径扫描器
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
@@ -83,13 +86,12 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
-		//注入reader 和scanner
+		//创建reader 和scanner
 		this();
-
 		//读取配置文件
 		//将annotatedClasses信息注入到GatericBeanDefinetionMap中
 		register(annotatedClasses);
-		//bean的声明周期创建
+		//bean的声明周期管理
 		refresh();
 	}
 
